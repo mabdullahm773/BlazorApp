@@ -1,0 +1,30 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<h3>Election Voting </h3>
+
+<div style="margin-bottom:0.75rem;">
+    <button @onclick="() => p1++">Vote: PTI 1</button>
+    <span style="margin-left:1rem;">@p1 votes</span>
+</div>
+
+<div style="margin-bottom:0.75rem;">
+    <button @onclick="() => p2++">Vote: PMLN 2</button>
+    <span style="margin-left:1rem;">@p2 votes</span>
+</div>
+
+<button @onclick="PickWinner">Result</button>
+
+@if (!string.IsNullOrEmpty(result)){
+    <p><strong>@result</strong></p>
+}
+
+@code {
+    int p1 = 0, p2 = 0;
+    string result = "";
+
+    void PickWinner()
+    {
+        result = p1 == p2 ? "Draw" : p1 > p2 ? "PTI won" : "PMLN won";
+    }
+}
